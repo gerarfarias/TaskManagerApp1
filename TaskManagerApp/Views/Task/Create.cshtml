@@ -1,0 +1,31 @@
+﻿@model TaskManagerApp.Models.TaskItem
+
+<h2>Create Task</h2>
+
+<!-- Form will POST to TaskController.Create -->
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken() <!-- Security: prevents CSRF -->
+
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DueDate"></label>
+        <input asp-for="DueDate" type="date" class="form-control" />
+    </div>
+
+    <div class="form-group form-check">
+        <input asp-for="IsCompleted" class="form-check-input" />
+        <label asp-for="IsCompleted" class="form-check-label"></label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
