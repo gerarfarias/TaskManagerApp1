@@ -16,12 +16,32 @@ namespace TaskManagerApp.Controllers
         }
 
         // READ - List all tasks
-        public IActionResult Index()
-        {
-            _logger.LogInformation("Fetching all tasks");
-            var tasks = TaskRepository.GetAll();
-            return View(tasks);
-        }
+       public IActionResult Index(string searchString, string statusFilter)
+{
+    _logger.LogInformation("Fetching all tasks");
+
+    var tasks = TaskRepository.GetAll();
+
+    // Search by title or description
+    if (!string.IsNullOrEmpty(searchString))
+    {
+        tasks = tasks
+            .Where(t => t.Title.Contains(searchString, StringComparison.OrdinalIgnoreCase)
+                     || t.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+    }
+
+    // Filter by status
+    if (!string.IsNullOrEmpty(statusFilter))
+    {
+        if (statusFilter == "Completed")
+            tasks = tasks.Where(t => t.IsCompleted).ToList();
+        else if (statusFilter == "Pending")
+            tasks = tasks.Where(t => !t.IsCompleted).ToList();
+    }
+
+    return View(tasks);
+}
 
         // GET: Task/Create
         [HttpGet]
