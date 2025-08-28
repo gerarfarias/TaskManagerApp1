@@ -1,7 +1,7 @@
 # TaskManagerApp
 
 This is a simple Task Manager application built with **ASP.NET Core MVC**.  
-It allows you to create, edit, delete, and list tasks using an in-memory repository
+It allows you to create, edit, delete, serach, filter and list tasks using an in-memory repository
 
 This project was built as part of an ASP.NET Core MVC assignment.
 
