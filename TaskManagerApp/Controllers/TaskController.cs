@@ -1,18 +1,22 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using TaskManagerApp.Models;
-using TaskManagerApp.Data;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using TaskManagerApp.Data;
+using TaskManagerApp.Models;
+using TaskManagerApp.Services;
 
 namespace TaskManagerApp.Controllers
 {
     public class TaskController : Controller
+
     {
         private readonly ILogger<TaskController> _logger;
+        private readonly ITimeProvider _timeProvider; // Injected service
 
-        public TaskController(ILogger<TaskController> logger)
+        public TaskController(ILogger<TaskController> logger, ITimeProvider timeProvider)
         {
             _logger = logger;
+            _timeProvider = timeProvider;
         }
 
         // READ - List all tasks
@@ -118,4 +122,3 @@ namespace TaskManagerApp.Controllers
         }
     }
 }
-
