@@ -1,6 +1,7 @@
 @model TaskManagerApp.Models.TaskItem
 
 <h2>Edit Task</h2>
+<p><strong>Server time:</strong> @ViewBag.ServerTime</p>
 
 <!-- Form will POST to TaskController.Edit -->
 <form asp-action="Edit" method="post">
