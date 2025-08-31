@@ -1,7 +1,12 @@
+using TaskManagerApp.Services;
+using Microsoft.AspNetCore.Builder;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<ITimeProvider, SystemTimeProvider>();
 
 var app = builder.Build();
 
